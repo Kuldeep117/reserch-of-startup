@@ -1,0 +1,33 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #fcf3cf;
+}
+header {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+.place-card {
+    background: white;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 8px solid #e67e22;
+}
+h2 { color: #d35400; }
+footer {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 20px;
+}
