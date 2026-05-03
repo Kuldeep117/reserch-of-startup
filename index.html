@@ -3,36 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incredible India | Places & History</title>
+    <title>World's Top 10 | AI Heritage Guide</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
-        <div class="hero">
-            <h1>Incredible India</h1>
-            <p>A Journey Through Time and Heritage</p>
+        <div class="overlay">
+            <h1>The World's Top 10</h1>
+            <p>Exploring humanity's greatest historical wonders with AI.</p>
         </div>
     </header>
 
     <main class="container">
         <section class="place-card">
-            <h2>1. The Taj Mahal, Agra</h2>
-            <p class="history"><strong>History:</strong> Built between 1631 and 1648 by Emperor Shah Jahan in memory of his favorite wife Mumtaz Mahal, this white marble mausoleum is the jewel of Muslim art in India. It took over 20,000 artisans to complete this masterpiece of Mughal architecture.</p>
+            <h2>1. Great Wall of China, China</h2>
+            <p><strong>History:</strong> A series of fortifications built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups.</p>
         </section>
 
         <section class="place-card">
-            <h2>2. Red Fort, Delhi</h2>
-            <p class="history"><strong>History:</strong> Constructed in 1639 by Shah Jahan when he shifted his capital from Agra to Delhi. It served as the main residence of the Mughal Emperors for nearly 200 years. Every year on August 15, the Prime Minister of India hoists the national flag here.</p>
+            <h2>2. Machu Picchu, Peru</h2>
+            <p><strong>History:</strong> An Incan citadel set high in the Andes Mountains. Built in the 15th century and later abandoned, it's renowned for its sophisticated dry-stone walls.</p>
         </section>
 
         <section class="place-card">
-            <h2>3. Hawa Mahal, Jaipur</h2>
-            <p class="history"><strong>History:</strong> Known as the "Palace of Winds," it was built in 1799 by Maharaja Sawai Pratap Singh. Its unique five-storey exterior is akin to the honeycomb of a beehive with its 953 small windows called Jharokhas.</p>
+            <h2>3. The Colosseum, Italy</h2>
+            <p><strong>History:</strong> An oval amphitheatre in the centre of the city of Rome. Built of travertine limestone, tuff, and brick-faced concrete, it was the largest amphitheatre ever built at the time.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>4. Petra, Jordan</h2>
+            <p><strong>History:</strong> A famous archaeological site in Jordan's southwestern desert. Dating to around 300 BC, it was the capital of the Nabataean Kingdom.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>5. Chichen Itza, Mexico</h2>
+            <p><strong>History:</strong> A complex of Mayan ruins on Mexico's Yucatán Peninsula. A massive step pyramid, known as El Castillo, dominates the 6.5-sq-km city.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>6. Christ the Redeemer, Brazil</h2>
+            <p><strong>History:</strong> An Art Deco statue of Jesus Christ in Rio de Janeiro, created by French sculptor Paul Landowski and built by engineers Heitor da Silva Costa and Albert Caquot.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>7. Taj Mahal, India</h2>
+            <p><strong>History:</strong> An ivory-white marble mausoleum on the right bank of the river Yamuna in Agra. It was commissioned in 1632 by the Mughal emperor Shah Jahan.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>8. Acropolis of Athens, Greece</h2>
+            <p><strong>History:</strong> An ancient citadel located on a rocky outcrop above the city of Athens and contains the remains of several ancient buildings of great architectural and historical significance.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>9. Angkor Wat, Cambodia</h2>
+            <p><strong>History:</strong> A temple complex in Cambodia and the largest religious monument in the world by land area, originally constructed as a Hindu temple for the Khmer Empire.</p>
+        </section>
+
+        <section class="place-card">
+            <h2>10. Stonehenge, United Kingdom</h2>
+            <p><strong>History:</strong> A prehistoric monument in Wiltshire, England. It consists of a ring of standing stones, each around 13 feet high, and weighing close to 25 tons.</p>
         </section>
     </main>
 
+    <div id="ai-chat-box">
+        <div class="chat-header">Travel AI Assistant (Groq)</div>
+        <div class="chat-body" id="chat-content">
+            <div class="message bot">Hello! I am your AI guide. Ask me anything about these 10 wonders of the world!</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Ask a question...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const chatContent = document.getElementById('chat-content');
+            const userText = inputField.value;
+
+            if (!userText) return;
+
+            chatContent.innerHTML += `<div class="message user"><strong>You:</strong> ${userText}</div>`;
+            inputField.value = '';
+            chatContent.scrollTop = chatContent.scrollHeight;
+
+            try {
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer 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",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "llama3-8b-8192",
+                        messages: [
+                            { role: "system", content: "You are a professional travel historian. Provide brief, interesting, and accurate history about the top 10 world wonders mentioned on the page. Keep answers under 3-4 sentences." },
+                            { role: "user", content: userText }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content;
+
+                chatContent.innerHTML += `<div class="message bot"><strong>AI:</strong> ${aiResponse}</div>`;
+                chatContent.scrollTop = chatContent.scrollHeight;
+
+            } catch (error) {
+                chatContent.innerHTML += `<div class="message bot" style="color:red;">AI Error: Failed to fetch response.</div>`;
+            }
+        }
+    </script>
+
     <footer>
-        <p>&copy; 2026 Indian Heritage Guide</p>
+        <p>&copy; 2026 World Wonders AI Guide | Powered by Groq Llama 3</p>
     </footer>
+
 </body>
 </html>
