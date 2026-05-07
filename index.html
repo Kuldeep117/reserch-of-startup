@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FounderFlow | India's #1 Startup Validation Platform</title>
+    <title>FounderFlow | Startup Validator & Funding Summary</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --primary: #002e5b; --secondary: #00d2ff; --accent: #25D366; --text: #2d3436; }
+        :root { --primary: #002e5b; --secondary: #00d2ff; --accent: #25D366; --bg: #f8fbff; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: #f8fbff; color: var(--text); scroll-behavior: smooth; }
+        body { background: var(--bg); color: #2d3436; scroll-behavior: smooth; }
         
-        /* Full Navigation Menu */
+        /* Navigation */
         nav { background: white; padding: 18px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 26px; font-weight: 800; color: var(--primary); text-decoration: none; }
         .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { text-decoration: none; color: #555; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .nav-links a { margin-left: 25px; text-decoration: none; color: #555; font-weight: 600; font-size: 14px; transition: 0.3s; }
         .nav-links a:hover { color: var(--secondary); }
         .btn-auth { background: var(--primary); color: white !important; padding: 10px 22px; border-radius: 10px; }
 
@@ -24,37 +23,43 @@
         .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
         .hero p { font-size: 19px; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; }
 
-        /* What We Do (About Section) */
-        .about-section { padding: 60px 8%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: -80px; }
-        .about-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; }
-        .about-card:hover { transform: translateY(-10px); }
-        .about-card i { font-size: 40px; color: var(--secondary); margin-bottom: 20px; }
-        .about-card h4 { margin-bottom: 12px; color: var(--primary); }
-        .about-card p { font-size: 14px; color: #666; }
+        /* About/Features */
+        .features { padding: 60px 8%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: -80px; }
+        .feature-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border: 1px solid #f0f4f8; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-card i { font-size: 40px; color: var(--secondary); margin-bottom: 20px; }
+        .feature-card h4 { margin-bottom: 12px; color: var(--primary); font-size: 18px; }
+        .feature-card p { font-size: 14px; color: #666; line-height: 1.5; }
 
-        /* Main Workspace */
-        .main-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 450px 1fr; gap: 40px; }
+        /* Main Content */
+        .main-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 420px 1fr; gap: 40px; }
         
-        /* Validator Card */
+        /* Submission Card */
         .card { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 20px 50px rgba(0,46,91,0.08); position: sticky; top: 100px; height: fit-content; }
         .card h3 { margin-bottom: 25px; color: var(--primary); font-size: 24px; }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
-        input, textarea { width: 100%; padding: 15px; border: 2px solid #f1f4f8; border-radius: 12px; font-size: 16px; background: #f9fbff; }
-        .btn-validate { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 18px; transition: 0.3s; margin-top: 10px; }
-        .btn-validate:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,210,255,0.3); }
+        .input-group { margin-bottom: 22px; }
+        label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 14px; color: #444; }
+        input, textarea { width: 100%; padding: 16px; border: 2px solid #f1f4f8; border-radius: 12px; font-size: 16px; background: #f9fbff; transition: 0.3s; }
+        input:focus, textarea:focus { border-color: var(--secondary); background: white; outline: none; }
+        .btn-validate { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 20px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 18px; transition: 0.3s; }
+        .btn-validate:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,210,255,0.3); }
 
-        /* Idea Wall */
-        .wall-header { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .idea-item { background: white; border-radius: 20px; padding: 30px; margin-bottom: 20px; border-left: 6px solid var(--secondary); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .tag-row { display: flex; gap: 10px; margin-bottom: 12px; }
-        .tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; }
-        .tag-funding { background: #e6fffa; color: #2c7a7b; }
-        .tag-market { background: #ebf8ff; color: #2b6cb0; }
+        /* Idea Summary List */
+        .summary-card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-left: 8px solid var(--secondary); }
+        .summary-header { border-bottom: 1px solid #f0f4f8; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .summary-header h4 { font-size: 22px; color: var(--primary); }
         
-        .wa-chat { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-weight: 700; margin-top: 15px; font-size: 14px; }
+        .analysis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        .analysis-item { background: #f8faff; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #edf2f7; }
+        .analysis-item span { font-size: 11px; color: #7f8c8d; display: block; margin-bottom: 5px; font-weight: 700; text-transform: uppercase; }
+        .analysis-item b { font-size: 18px; color: var(--primary); }
 
-        @media (max-width: 900px) { .main-container, .about-section { grid-template-columns: 1fr; } .hero h1 { font-size: 36px; } }
+        .idea-box { background: #fffdf0; padding: 20px; border-radius: 12px; border-left: 4px solid #f1c40f; margin-bottom: 20px; color: #555; line-height: 1.6; }
+        
+        .wa-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f4f8; padding-top: 15px; }
+        .wa-link { color: var(--accent); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+
+        @media (max-width: 900px) { .main-container, .features { grid-template-columns: 1fr; } .hero h1 { font-size: 38px; } }
     </style>
 </head>
 <body>
@@ -62,57 +67,53 @@
 <nav>
     <a href="#" class="logo">Founder<span>Flow</span></a>
     <div class="nav-links">
-        <a href="#how-it-works">How it Works</a>
-        <a href="#validator">Validate Idea</a>
-        <a href="#">Top Startups</a>
+        <a href="#features">Features</a>
+        <a href="#validator">Validator</a>
         <a href="#">Resources</a>
-        <a href="#" class="btn-auth">Sign Up</a>
+        <a href="#" class="btn-auth">Get Started</a>
     </div>
 </nav>
 
 <section class="hero">
-    <h1>Is your Startup Idea <br> Worth Funding?</h1>
-    <p>FounderFlow Bharat ka sabse advanced validation engine hai jo aapke idea ko market fit, scalability, aur funding ke liye check karta hai.</p>
+    <h1>Is Your Startup Idea <br> <span>Worth Funding?</span></h1>
+    <p>FounderFlow is India's premier validation platform. Analyze your market fit, scalability, and funding probability in seconds.</p>
 </section>
 
-<section class="about-section" id="how-it-works">
-    <div class="about-card">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h4>Idea Security</h4>
-        <p>Aapka idea safe hai. Hamari community IP security aur founder trust par bani hai.</p>
+<section class="features" id="features">
+    <div class="feature-card">
+        <i class="fa-solid fa-lock"></i>
+        <h4>Idea Protection</h4>
+        <p>Your ideas are secured with us. Our network is built on founder-to-founder trust and IP security.</p>
     </div>
-    <div class="about-card">
-        <i class="fa-solid fa-chart-pie"></i>
-        <h4>Market Analysis</h4>
-        <p>Real-time data se check karein ki kya log aapke product ke liye paise denge.</p>
+    <div class="feature-card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h4>Market Insights</h4>
+        <p>Get real-time analysis on whether customers are willing to pay for your specific solution.</p>
     </div>
-    <div class="about-card">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        <h4>Funding Readiness</h4>
-        <p>Investors ki checklist se apne idea ko match karein aur gaps ko pehchanein.</p>
+    <div class="feature-card">
+        <i class="fa-solid fa-sack-dollar"></i>
+        <h4>Funding Score</h4>
+        <p>Compare your business model against investor checklists to identify critical gaps.</p>
     </div>
 </section>
 
 <div class="main-container" id="validator">
     <div class="card">
-        <h3><i class="fa-solid fa-vial-circle-check"></i> Validate Now</h3>
+        <h3><i class="fa-solid fa-microscope"></i> Idea Validator</h3>
         <div class="input-group">
-            <label>Startup Name</label>
-            <input type="text" id="sname" placeholder="Eg: GreenMobility India">
+            <label>Startup Title</label>
+            <input type="text" id="sname" placeholder="e.g. AgriTech Solutions">
         </div>
         <div class="input-group">
-            <label>What are you building?</label>
-            <textarea id="sdesc" rows="5" placeholder="Apna idea details mein samjhayein..."></textarea>
+            <label>Executive Summary</label>
+            <textarea id="sdesc" rows="6" placeholder="Describe the problem you are solving..."></textarea>
         </div>
-        <button class="btn-validate" onclick="submitIdea()">Analyze & Post 🚀</button>
-        <p style="font-size: 12px; color: #888; text-align: center; margin-top: 15px;">Validated by 50+ Mentor Network</p>
+        <button class="btn-validate" onclick="processIdea()">Generate Analysis 🚀</button>
+        <p style="text-align: center; font-size: 12px; color: #999; margin-top: 15px;">Trusted by 1200+ Indian Entrepreneurs</p>
     </div>
 
     <div>
-        <div class="wall-header">
-            <h2 style="color: var(--primary);">Live Startup Feed</h2>
-            <p style="font-size: 13px; color: #666;"><i class="fa-solid fa-bolt" style="color: gold;"></i> Real-time Updates</p>
-        </div>
+        <h2 style="color: var(--primary); margin-bottom: 25px;">Live Analysis Feed</h2>
         <div id="wall">
             </div>
     </div>
@@ -121,17 +122,24 @@
 <script>
     window.onload = loadIdeas;
 
-    function submitIdea() {
+    function processIdea() {
         const name = document.getElementById('sname').value;
         const desc = document.getElementById('sdesc').value;
-        if(!name || !desc) { alert("Bhai, idea toh daalo!"); return; }
+        if(!name || !desc) { alert("Please provide your startup details."); return; }
 
-        const fundingProb = Math.floor(Math.random() * 25) + 70;
-        const newIdea = { id: Date.now(), name, desc, prob: fundingProb };
+        const score = Math.floor(Math.random() * 20) + 75;
+        const newIdea = { 
+            id: Date.now(), 
+            name, 
+            desc, 
+            score,
+            stage: "Pre-Seed",
+            market: "High Demand" 
+        };
         
-        let ideas = JSON.parse(localStorage.getItem('ff_pro_v1')) || [];
+        let ideas = JSON.parse(localStorage.getItem('founderflow_eng')) || [];
         ideas.unshift(newIdea);
-        localStorage.setItem('ff_pro_v1', JSON.stringify(ideas));
+        localStorage.setItem('founderflow_eng', JSON.stringify(ideas));
 
         document.getElementById('sname').value = '';
         document.getElementById('sdesc').value = '';
@@ -140,24 +148,48 @@
 
     function loadIdeas() {
         const wall = document.getElementById('wall');
-        const ideas = JSON.parse(localStorage.getItem('ff_pro_v1')) || [];
+        const ideas = JSON.parse(localStorage.getItem('founderflow_eng')) || [];
         
         if(ideas.length === 0) {
-            wall.innerHTML = `<div class="idea-item"><h4>Start Your Journey</h4><p>Abhi yahan koi idea nahi hai. Apna idea pehle validate karein!</p></div>`;
+            wall.innerHTML = `<div class="summary-card"><h4>Live Feed Ready</h4><p>No analysis generated yet. Submit your idea to see the detailed report.</p></div>`;
             return;
         }
 
         wall.innerHTML = ideas.map(idea => `
-            <div class="idea-item">
-                <div class="tag-row">
-                    <span class="tag tag-funding">Funding: ${idea.prob}%</span>
-                    <span class="tag tag-market">Market: High Demand</span>
+            <div class="summary-card">
+                <div class="summary-header">
+                    <h4>${idea.name}</h4>
+                    <span style="font-size: 11px; font-weight: 700; color: #adb5bd;">REF: #${idea.id.toString().slice(-4)}</span>
                 </div>
-                <h4>${idea.name}</h4>
-                <p>${idea.desc}</p>
-                <a href="https://wa.me/91XXXXXXXXXX" class="wa-chat">
-                    <i class="fab fa-whatsapp"></i> Join Founder Discussion
-                </a>
+                
+                <div class="analysis-grid">
+                    <div class="analysis-item">
+                        <span>Funding Prob.</span>
+                        <b style="color: #2ecc71;">${idea.score}%</b>
+                    </div>
+                    <div class="analysis-item">
+                        <span>Market Fit</span>
+                        <b>${idea.market}</b>
+                    </div>
+                    <div class="analysis-item">
+                        <span>Stage</span>
+                        <b>${idea.stage}</b>
+                    </div>
+                </div>
+
+                <div class="idea-box">
+                    <strong>Executive Summary:</strong><br>
+                    ${idea.desc}
+                </div>
+
+                <div class="wa-footer">
+                    <div style="font-size: 13px; font-weight: 600; color: #34495e;">
+                        <i class="fa-solid fa-certificate" style="color: #3498db;"></i> Community Verified
+                    </div>
+                    <a href="https://wa.me/91XXXXXXXXXX" class="wa-link">
+                        <i class="fab fa-whatsapp fa-lg"></i> Discuss with Mentors
+                    </a>
+                </div>
             </div>
         `).join('');
     }
