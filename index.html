@@ -3,91 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FounderFlow | Startup Idea Wall</title>
+    <title>FounderFlow | Startup Validation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --primary: #002e5b; --secondary: #00d2ff; --bg: #f8fbff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: var(--bg); color: #2c3e50; }
         
         /* Navigation */
         nav { background: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .logo { font-size: 26px; font-weight: 800; color: var(--primary); }
+        .logo { font-size: 26px; font-weight: 800; color: var(--primary); text-decoration: none; }
         .logo span { color: var(--secondary); }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: #555; font-weight: 500; }
+        .login-btn { background: var(--secondary); color: var(--primary); padding: 8px 20px; border-radius: 8px; font-weight: bold; }
 
-        /* Hero Section (Wahi Purani Design) */
-        .hero { background: linear-gradient(135deg, #002e5b 0%, #001529 100%); color: white; padding: 60px 8% 100px; text-align: center; }
-        .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; }
-        .hero p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        /* Hero Section (Wahi Shuru Wala Design) */
+        .hero { background: linear-gradient(135deg, #002e5b 0%, #001529 100%); color: white; padding: 80px 8% 120px; text-align: center; }
+        .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+        .hero p { font-size: 18px; opacity: 0.9; max-width: 800px; margin: 0 auto 30px; }
+        .hero-btns .btn { padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; margin: 5px; display: inline-block; }
+        .btn-main { background: var(--secondary); color: var(--primary); }
+        .btn-outline { border: 2px solid white; color: white; }
 
-        /* Layout */
-        .main-container { max-width: 1100px; margin: -60px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 380px 1fr; gap: 30px; }
+        /* Main Section */
+        .main-container { max-width: 1200px; margin: -60px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 450px 1fr; gap: 30px; }
         
-        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        h3 { margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .card { background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .card h3 { margin-bottom: 25px; color: var(--primary); font-size: 22px; }
 
-        /* Input Styles */
-        .input-box { margin-bottom: 20px; }
+        /* Form */
+        .input-group { margin-bottom: 20px; text-align: left; }
         label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #555; }
-        input, textarea { width: 100%; padding: 12px; border: 2px solid #edf2f7; border-radius: 10px; outline: none; transition: 0.3s; }
-        input:focus, textarea:focus { border-color: var(--secondary); }
-        
-        .btn { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,210,255,0.3); }
+        input, textarea { width: 100%; padding: 15px; border: 2px solid #edf2f7; border-radius: 12px; font-size: 16px; outline: none; }
+        .submit-btn { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,210,255,0.3); }
 
-        /* Idea Wall Styling */
+        /* Wall Section */
         .wall { display: flex; flex-direction: column; gap: 20px; }
-        .idea-post { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--secondary); }
-        .idea-post h4 { color: var(--primary); margin-bottom: 10px; font-size: 20px; }
-        .idea-post p { font-size: 15px; color: #666; margin-bottom: 15px; }
-        .whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; color: #25D366; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .post { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--secondary); }
+        .post h4 { color: var(--primary); margin-bottom: 10px; font-size: 20px; }
+        .post p { color: #666; font-size: 15px; margin-bottom: 20px; }
+        .wa-chat { color: #25D366; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; }
 
-        @media (max-width: 850px) { .main-container { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">Founder<span>Flow</span></div>
-    <div style="font-weight: 600; color: var(--primary);">Join 100+ Founders</div>
+    <a href="#" class="logo">Founder<span>Flow</span></a>
+    <div class="nav-links">
+        <a href="#">About</a> <a href="#">Mentors</a> <a href="#">Pricing</a>
+        <a href="#" class="login-btn">Login</a>
+    </div>
 </nav>
 
 <section class="hero">
     <h1>Don't Get Rejected by Investors.</h1>
-    <p>Apna idea post karein aur real founders ke saath discuss karein.</p>
+    <p>India ke pehle "Founder-Led Validation" platform par apne idea ko test karein aur market clarity payein.</p>
+    <div class="hero-btns">
+        <a href="#submit-form" class="btn btn-main">Start Validation</a>
+        <a href="#" class="btn btn-outline">Watch Demo</a>
+    </div>
 </section>
 
-<div class="main-container">
-    <div class="card" style="height: fit-content;">
-        <h3><i class="fa-solid fa-rocket"></i> Submit Idea</h3>
-        <div class="input-box">
+<div class="main-container" id="submit-form">
+    <div class="card">
+        <h3><i class="fa-solid fa-rocket"></i> Submit Your Startup Idea</h3>
+        <div class="input-group">
             <label>Startup Name</label>
-            <input type="text" id="sname" placeholder="Eg: Food Map India">
+            <input type="text" id="sname" placeholder="Apne startup ka naam likhein...">
         </div>
-        <div class="input-box">
-            <label>Description</label>
-            <textarea id="sdesc" rows="5" placeholder="Problem aur Solution likhein..."></textarea>
+        <div class="input-group">
+            <label>Describe your Idea</label>
+            <textarea id="sdesc" rows="6" placeholder="Aap kya problem solve kar rahe hain?"></textarea>
         </div>
-        <button class="btn" onclick="addIdea()">Post to Idea Wall 🚀</button>
+        <button class="submit-btn" onclick="postToWall()">Post to Idea Wall 🚀</button>
     </div>
 
-    <div class="wall" id="wall">
+    <div class="wall" id="ideaWall">
         </div>
 </div>
 
 <script>
     window.onload = loadIdeas;
 
-    function addIdea() {
+    function postToWall() {
         const name = document.getElementById('sname').value;
         const desc = document.getElementById('sdesc').value;
-
-        if(!name || !desc) { alert("Details bhariye!"); return; }
+        if(!name || !desc) { alert("Bhai, details bharna zaroori hai!"); return; }
 
         const newIdea = { id: Date.now(), name, desc };
-        let ideas = JSON.parse(localStorage.getItem('my_ideas')) || [];
+        let ideas = JSON.parse(localStorage.getItem('founder_ideas')) || [];
         ideas.unshift(newIdea);
-        localStorage.setItem('my_ideas', JSON.stringify(ideas));
+        localStorage.setItem('founder_ideas', JSON.stringify(ideas));
 
         document.getElementById('sname').value = '';
         document.getElementById('sdesc').value = '';
@@ -95,19 +104,19 @@
     }
 
     function loadIdeas() {
-        const wall = document.getElementById('wall');
-        const ideas = JSON.parse(localStorage.getItem('my_ideas')) || [];
+        const wall = document.getElementById('ideaWall');
+        const ideas = JSON.parse(localStorage.getItem('founder_ideas')) || [];
         
         if(ideas.length === 0) {
-            wall.innerHTML = `<div class="idea-post"><h4>Startup Idea Wall</h4><p>Abhi koi idea nahi hai. Pehla idea aap post karein!</p></div>`;
+            wall.innerHTML = `<div class="post"><h4>Live Startup Wall</h4><p>Abhi yahan koi idea nahi hai. Pehla idea aap post karein!</p></div>`;
             return;
         }
 
         wall.innerHTML = ideas.map(idea => `
-            <div class="idea-post">
+            <div class="post">
                 <h4>${idea.name}</h4>
                 <p>${idea.desc}</p>
-                <a href="https://wa.me/91XXXXXXXXXX?text=Discussing ${idea.name}" class="whatsapp-btn">
+                <a href="https://wa.me/91XXXXXXXXXX" class="wa-chat">
                     <i class="fab fa-whatsapp fa-lg"></i> Discuss on WhatsApp
                 </a>
             </div>
