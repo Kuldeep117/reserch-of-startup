@@ -4,103 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FounderFlow | AI Startup Validator</title>
+    <title>FounderFlow | Startup Idea Wall</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --primary: #002e5b; --secondary: #00d2ff; --bg: #f8fbff; }
+        :root { --primary: #002e5b; --secondary: #00d2ff; --bg: #f0f4f8; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: #2c3e50; }
-        nav { background: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .logo { font-size: 26px; font-weight: 800; color: var(--primary); }
-        .hero { background: linear-gradient(135deg, #002e5b 0%, #001529 100%); color: white; padding: 40px 8%; text-align: center; }
-        .container { max-width: 900px; margin: -30px auto 60px; padding: 0 20px; }
-        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; }
-        .input-box { margin-bottom: 20px; text-align: left; }
-        input, textarea { width: 100%; padding: 15px; border: 2px solid #edf2f7; border-radius: 12px; font-size: 16px; }
-        .btn { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 18px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; }
+        body { background: var(--bg); color: #333; }
+        nav { background: white; padding: 15px 8%; display: flex; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .hero { background: var(--primary); color: white; padding: 40px 8%; text-align: center; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .btn { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
         
-        /* AI Result Design */
-        #ai-result { display: none; margin-top: 30px; padding: 25px; border-radius: 20px; background: #eef9ff; border: 2px solid var(--secondary); }
-        .score-circle { width: 100px; height: 100px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; margin: 0 auto 15px; border: 5px solid var(--secondary); }
+        /* Idea Wall Styles */
+        .idea-wall { height: 500px; overflow-y: auto; padding: 10px; }
+        .idea-card { background: white; border-left: 5px solid var(--secondary); padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; }
+        .idea-card h4 { color: var(--primary); margin-bottom: 5px; }
+        .idea-card p { font-size: 14px; color: #666; }
+        .score-tag { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; padding: 2px 8px; border-radius: 5px; font-size: 12px; }
+        .suggest-btn { margin-top: 10px; display: inline-block; font-size: 12px; color: var(--secondary); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<nav><div class="logo">FounderFlow</div></nav>
+<nav><div style="font-size: 24px; font-weight: 800;">Founder<span>Flow</span></div></nav>
 
-<section class="hero">
-    <h1>AI Startup Idea Validator</h1>
-    <p>Apna idea likhein aur turant AI Score payein!</p>
-</section>
+<div class="hero">
+    <h1>Post Your Idea & Get Suggestions</h1>
+    <p>Apna idea submit karein aur community se feedback payein.</p>
+</div>
 
 <div class="container">
     <div class="card">
-        <div class="input-box">
-            <label>Startup Name</label>
-            <input type="text" id="sname" placeholder="Eg: Indian Food Map">
-        </div>
-        <div class="input-box">
-            <label>Idea Description</label>
-            <textarea id="sdesc" rows="4" placeholder="Aapka idea kya hai?"></textarea>
-        </div>
-        <button class="btn" id="ai-btn" onclick="getAIScore()">Analyze My Idea 🚀</button>
+        <h3><i class="fa-solid fa-paper-plane"></i> Submit Your Idea</h3>
+        <br>
+        <input type="text" id="sname" placeholder="Startup ka naam...">
+        <textarea id="sdesc" rows="4" placeholder="Idea details mein likhein..."></textarea>
+        <button class="btn" onclick="postIdea()">Post to Idea Wall 🚀</button>
+    </div>
 
-        <div id="ai-result">
-            <div class="score-circle" id="score-val">--</div>
-            <h3 style="color: var(--primary);">AI Validation Score</h3>
-            <p id="feedback-val" style="margin: 15px 0; font-size: 15px; color: #444;"></p>
-            <button class="btn" style="background:#25D366; color:white;" onclick="window.open('https://wa.me/91XXXXXXXXXX')">Contact Mentor</button>
-        </div>
+    <div class="card">
+        <h3><i class="fa-solid fa-users-viewfinder"></i> Startup Idea Wall</h3>
+        <br>
+        <div class="idea-wall" id="wall">
+            </div>
     </div>
 </div>
 
 <script>
-    async function getAIScore() {
+    // Pehle se save ideas load karein
+    window.onload = function() {
+        displayIdeas();
+    };
+
+    async function postIdea() {
         const name = document.getElementById('sname').value;
         const desc = document.getElementById('sdesc').value;
-        const btn = document.getElementById('ai-btn');
-        const resultDiv = document.getElementById('ai-result');
+        if(!name || !desc) { alert("Bhai details bharo!"); return; }
 
-        if(!name || !desc) { alert("Details bhariyan!"); return; }
+        // AI Score Calculate (Optional logic for display)
+        const score = Math.floor(Math.random() * 30) + 60; // Abhi random score, AI key baad mein lagayenge
 
-        btn.innerText = "AI Analyzing...";
-        btn.disabled = true;
-
-        // API Key (Hidden for GitHub)
-        const p1 = "AIzaSyBgztyT";
-        const p2 = "MY3PZ56ITQOm";
-        const p3 = "-Z9NNZuskz4uB1Q";
-        const KEY = p1 + p2 + p3;
+        const newIdea = { name, desc, score };
         
-        const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`;
+        // Local storage mein save karein
+        let ideas = JSON.parse(localStorage.getItem('startup_ideas')) || [];
+        ideas.unshift(newIdea);
+        localStorage.setItem('startup_ideas', JSON.stringify(ideas));
 
-        try {
-            const res = await fetch(URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: `Analyze Indian startup: ${name}. Desc: ${desc}. Give score out of 100 and 2 lines feedback in Hindi. Format: Score: [number] | Feedback: [text]` }] }]
-                })
-            });
+        displayIdeas();
+        document.getElementById('sname').value = '';
+        document.getElementById('sdesc').value = '';
+    }
 
-            const data = await res.json();
-            const responseText = data.candidates[0].content.parts[0].text;
-            
-            const scoreMatch = responseText.match(/\d+/);
-            const score = scoreMatch ? scoreMatch[0] : "70";
-            
-            document.getElementById('score-val').innerText = score;
-            document.getElementById('feedback-val').innerText = responseText;
-            resultDiv.style.display = "block";
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
+    function displayIdeas() {
+        const wall = document.getElementById('wall');
+        const ideas = JSON.parse(localStorage.getItem('startup_ideas')) || [];
+        wall.innerHTML = '';
 
-        } catch (e) {
-            alert("API busy hai, thodi der mein try karein!");
-        } finally {
-            btn.innerText = "Analyze My Idea 🚀";
-            btn.disabled = false;
-        }
+        ideas.forEach(idea => {
+            wall.innerHTML += `
+                <div class="idea-card">
+                    <span class="score-tag">Score: ${idea.score}</span>
+                    <h4>${idea.name}</h4>
+                    <p>${idea.desc}</p>
+                    <a href="https://wa.me/91XXXXXXXXXX" class="suggest-btn"><i class="fa-solid fa-comments"></i> Suggest Improvement</a>
+                </div>
+            `;
+        });
     }
 </script>
+
 </body>
 </html>
