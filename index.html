@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FounderFlow India | Validate Before You Pitch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary: #002e5b; --secondary: #00d2ff; --accent: #ff4b2b; --bg: #f8fbff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: #2c3e50; line-height: 1.6; }
+        
+        /* Navbar */
+        nav { background: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .logo { font-size: 26px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+        .logo span { color: var(--secondary); }
+        .nav-links a { margin-left: 25px; text-decoration: none; color: #555; font-weight: 500; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
 
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #002e5b 0%, #001529 100%); color: white; padding: 80px 8% 120px; text-align: center; }
+        .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .hero p { font-size: 18px; max-width: 700px; margin: 0 auto 35px; opacity: 0.9; }
+        .cta-group { display: flex; justify-content: center; gap: 15px; }
+        .btn { padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-primary { background: var(--secondary); color: var(--primary); }
+        .btn-outline { border: 2px solid white; color: white; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* Main Container */
+        .main-container { max-width: 1100px; margin: -60px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 1fr 340px; gap: 30px; }
+        
+        /* Submission Card */
+        .submission-card { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .submission-card h2 { margin-bottom: 25px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .input-box { margin-bottom: 20px; }
+        .input-box label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #555; }
+        .input-box input, .input-box textarea { width: 100%; padding: 12px; border: 2px solid #edf2f7; border-radius: 10px; outline: none; transition: 0.3s; }
+        .input-box input:focus, .input-box textarea:focus { border-color: var(--secondary); }
+        
+        /* Community Section */
+        .sidebar { display: flex; flex-direction: column; gap: 25px; }
+        .side-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .side-card h3 { font-size: 18px; margin-bottom: 15px; border-left: 4px solid var(--secondary); padding-left: 12px; }
+        .group-link { display: flex; align-items: center; gap: 12px; background: #e7fcf8; color: #075e54; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+        
+        .idea-feed { font-size: 14px; margin-top: 15px; }
+        .feed-item { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .feed-item b { display: block; color: var(--secondary); font-size: 12px; text-transform: uppercase; }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Founder<span>Flow</span></div>
+    <div class="nav-links">
+        <a href="#">About</a>
+        <a href="#">Mentors</a>
+        <a href="#">Pricing</a>
+        <a href="https://wa.me/YOUR_NUMBER" class="btn btn-primary" style="padding: 8px 15px;">Login</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Don't Get Rejected by Investors.</h1>
+    <p>India ke pehle "Founder-Led Validation" platform par apne idea ko test karein aur market clarity payein.</p>
+    <div class="cta-group">
+        <a href="#form" class="btn btn-primary">Start Validation</a>
+        <a href="#" class="btn btn-outline">Watch Demo</a>
+    </div>
+</section>
+
+<div class="main-container">
+    <div class="submission-card" id="form">
+        <h2><i class="fa-solid fa-rocket"></i> Submit Your Startup Idea</h2>
+        <div class="input-box">
+            <label>Startup Name</label>
+            <input type="text" id="sname" placeholder="Apne startup ka naam likhein...">
+        </div>
+        <div class="input-box">
+            <label>The Problem (Problem kya hai?)</label>
+            <textarea id="sproblem" rows="3" placeholder="Logo ko kya pareshani ho rahi hai?"></textarea>
+        </div>
+        <div class="input-box">
+            <label>Your Solution (Aapka Idea)</label>
+            <textarea id="ssolution" rows="4" placeholder="Aapka product is problem ko kaise solve karega?"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; padding: 18px;" onclick="sendData()">Get Manual Review (WhatsApp)</button>
+    </div>
+
+    <div class="sidebar">
+        <div class="side-card">
+            <h3>Founder Community</h3>
+            <p style="font-size: 13px; margin-bottom: 15px;">120+ Founders abhi online hain. Salah lein aur dein!</p>
+            <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" class="group-link">
+                <i class="fab fa-whatsapp fa-2x"></i> Join WhatsApp Group
+            </a>
+        </div>
+
+        <div class="side-card">
+            <h3>Recent Validations</h3>
+            <div class="idea-feed">
+                <div class="feed-item"><b>Agri-Tech</b> "Smart irrigation for farmers in Haryana..."</div>
+                <div class="feed-item"><b>Ed-Tech</b> "Skill-based learning for rural youth..."</div>
+                <div class="feed-item"><b>Fin-Tech</b> "Micropayments for local street vendors..."</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 FounderFlow India - Built for the next generation of Indian Entrepreneurs.
+</footer>
+
+<script>
+    function sendData() {
+        let name = document.getElementById('sname').value;
+        let prob = document.getElementById('sproblem').value;
+        let sol = document.getElementById('ssolution').value;
+        
+        if(!name || !prob || !sol) {
+            alert("Bhai, saari details bhariye!");
+            return;
+        }
+
+        let message = `*Startup Idea for Review*%0A%0A*Name:* ${name}%0A*Problem:* ${prob}%0A*Solution:* ${sol}`;
+        window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank'); 
+        // XXXXXXXXXX ki jagah apna number daal dena.
+    }
+</script>
+
+</body>
+</html>
